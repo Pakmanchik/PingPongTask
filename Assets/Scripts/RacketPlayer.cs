@@ -1,18 +1,21 @@
-using System.Collections;
-using System.Collections.Generic;
 using UnityEngine;
 
-public class RacketPlayer : MonoBehaviour
+public class RacketPlayer : ParentRacket
 {
-    // Start is called before the first frame update
-    void Start()
+    [SerializeField] private float _speedRacket;
+    private Vector2 _directionRacket;
+    private float _horizontalVector;
+
+    private void Update()
     {
-        
+        MoveRacket();
     }
 
-    // Update is called once per frame
-    void Update()
+    private void MoveRacket()
     {
-        
+        _horizontalVector = Input.GetAxis("Horizontal");
+
+        _directionRacket = new Vector2(_horizontalVector, 0) * _speedRacket * Time.deltaTime;
+        transform.Translate(_directionRacket);
     }
 }
